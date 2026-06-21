@@ -41,7 +41,7 @@ export default async function TenantDashboardPage() {
   const currentYear = now.getFullYear()
 
   // Cari tagihan bulan ini
-  const currentBill = tenant.payments.find(p => p.month === currentMonth && p.year === currentYear)
+  const currentBill = tenant.payments.find((p: any) => p.month === currentMonth && p.year === currentYear)
   
   // Format mata uang
   const formatRupiah = (amount: number) => {
