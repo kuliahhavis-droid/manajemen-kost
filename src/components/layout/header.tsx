@@ -31,7 +31,7 @@ export function Header() {
         <SheetContent side="left" className="sm:max-w-xs p-0">
           <SheetTitle className="sr-only">Menu Navigasi</SheetTitle>
           <div className="flex h-16 items-center px-6 border-b">
-            <span className="font-bold text-lg">KostHub</span>
+            <span className="font-bold text-lg">KostFlow</span>
           </div>
           <Sidebar />
         </SheetContent>

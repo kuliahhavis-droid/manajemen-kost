@@ -37,7 +37,7 @@ export default function LoginPage() {
           <div className="space-y-1">
             <CardTitle className="text-3xl font-extrabold tracking-tight">
               <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-sky-600 dark:from-indigo-400 dark:via-purple-400 dark:to-sky-400 bg-clip-text text-transparent">
-                KostHub
+                KostFlow
               </span>
             </CardTitle>
             <CardDescription className="text-sm text-muted-foreground">

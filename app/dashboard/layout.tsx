@@ -12,7 +12,7 @@ export default function DashboardLayout({
       <div className="hidden border-r bg-muted/40 md:block sticky top-0 h-screen">
         <div className="flex h-full flex-col gap-2">
           <div className="flex h-14 items-center border-b px-4 lg:h-16 lg:px-6">
-            <span className="font-bold text-lg">KostHub</span>
+            <span className="font-bold text-lg">KostFlow</span>
           </div>
           <div className="flex-1 overflow-auto py-2">
             <Sidebar />

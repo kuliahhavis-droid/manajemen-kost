@@ -29,7 +29,7 @@ export function generateReceiptPDF(data: ReceiptData): Buffer {
   doc.setFont("helvetica", "bold")
   doc.setFontSize(14)
   doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2])
-  doc.text("KostHub", 10, 15)
+  doc.text("KostFlow", 10, 15)
 
   doc.setFont("helvetica", "normal")
   doc.setFontSize(8)

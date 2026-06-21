@@ -35,7 +35,7 @@ export function ExportButtons({ data }: ExportButtonsProps) {
     
     // Judul PDF
     doc.setFontSize(16)
-    doc.text("Laporan Pembayaran KostHub", 14, 15)
+    doc.text("Laporan Pembayaran KostFlow", 14, 15)
     doc.setFontSize(10)
     doc.text(`Dicetak pada: ${new Date().toLocaleDateString('id-ID')}`, 14, 22)
 

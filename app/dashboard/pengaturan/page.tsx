@@ -68,7 +68,7 @@ export default function PengaturanPage() {
   }, [])
 
   const [kostInfo, setKostInfo] = useState({
-    name: "KostHub Modern Elite",
+    name: "KostFlow Modern Elite",
     phone: "081234567890",
     address: "Jl. Margonda Raya No. 100, Depok, Jawa Barat",
     rules: "1. Jam malam maksimal pukul 23:00 WIB\n2. Tamu menginap harus melapor petugas\n3. Dilarang merokok di area lorong kamar"
@@ -77,7 +77,7 @@ export default function PengaturanPage() {
   const [bankInfo, setBankInfo] = useState({
     bankName: "Bank Central Asia (BCA)",
     accountNumber: "8001298453",
-    accountHolder: "PT KostHub Indonesia Jaya"
+    accountHolder: "PT KostFlow Indonesia Jaya"
   })
 
   const handleSave = async (e: React.FormEvent) => {
