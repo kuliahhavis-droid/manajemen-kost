@@ -41,7 +41,7 @@ export default async function LaporanPage() {
                 </TableCell>
               </TableRow>
             ) : (
-              data.map((item) => (
+              data.map((item: any) => (
                 <TableRow key={item.id}>
                   <TableCell className="font-medium">
                     {item.tenant.name} ({item.tenant.room.number})
@@ -72,7 +72,7 @@ export default async function LaporanPage() {
             Data belum tersedia.
           </Card>
         ) : (
-          data.map((item) => (
+          data.map((item: any) => (
             <Card key={item.id} className="p-4 space-y-3">
               <div className="flex items-start justify-between">
                 <div>
