@@ -29,7 +29,7 @@ export default async function TambahPembayaranPage() {
           <Select name="tenantId" required>
             <SelectTrigger><SelectValue placeholder="Pilih Penghuni..." /></SelectTrigger>
             <SelectContent>
-              {tenants.map(tenant => (
+              {tenants.map((tenant: any) => (
                 <SelectItem key={tenant.id} value={tenant.id}>
                   {tenant.name} - Kamar {tenant.room.number}
                 </SelectItem>
