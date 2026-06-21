@@ -1,29 +1,65 @@
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
+import { createServerClient } from '@supabase/ssr'
+import { NextResponse, type NextRequest } from 'next/server'
 
-export function middleware(request: NextRequest) {
-  // Hanya lindungi rute /tenant/dashboard dan sub-rutenya
-  if (request.nextUrl.pathname.startsWith('/tenant/dashboard')) {
+export async function middleware(request: NextRequest) {
+  const pathname = request.nextUrl.pathname
+
+  // 1. Proteksi Tenant Dashboard (Menggunakan Session Cookie Kustom)
+  if (pathname.startsWith('/tenant/dashboard')) {
     const sessionCookie = request.cookies.get('tenant_session')
     
-    // Jika tidak ada cookie sesi penghuni, lempar kembali ke halaman login
     if (!sessionCookie || !sessionCookie.value) {
       const loginUrl = new URL('/tenant/login', request.url)
       return NextResponse.redirect(loginUrl)
     }
-    
-    // Verifikasi HMAC dilakukan di level aplikasi (Server Components) 
-    // karena middleware Edge runtime tidak mendukung crypto Node secara native,
-    // tapi keberadaan cookie saja sudah cukup untuk filter awal.
   }
 
-  // Khusus admin (Dashboard utama) bisa ditambahkan proteksi Supabase Auth di sini jika diperlukan,
-  // tapi biasanya Supabase Auth dihandle di root layout atau spesifik page.
+  // 2. Proteksi Admin Dashboard (Menggunakan Supabase Auth)
+  if (pathname.startsWith('/dashboard')) {
+    let supabaseResponse = NextResponse.next({
+      request,
+    })
+
+    const supabase = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      {
+        cookies: {
+          getAll() {
+            return request.cookies.getAll()
+          },
+          setAll(cookiesToSet) {
+            cookiesToSet.forEach(({ name, value, options }) =>
+              request.cookies.set(name, value)
+            )
+            supabaseResponse = NextResponse.next({
+              request,
+            })
+            cookiesToSet.forEach(({ name, value, options }) =>
+              supabaseResponse.cookies.set(name, value, options)
+            )
+          },
+        },
+      }
+    )
+
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
+
+    // Jika tidak ada user yang terautentikasi, arahkan ke halaman login admin
+    if (!user) {
+      const loginUrl = new URL('/login', request.url)
+      return NextResponse.redirect(loginUrl)
+    }
+
+    return supabaseResponse
+  }
 
   return NextResponse.next()
 }
 
-// Konfigurasi path mana saja yang akan dicegat middleware ini
+// Daftarkan rute admin (/dashboard) dan tenant (/tenant/dashboard) ke middleware
 export const config = {
-  matcher: ['/tenant/dashboard/:path*'],
+  matcher: ['/tenant/dashboard/:path*', '/dashboard/:path*'],
 }
