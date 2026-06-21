@@ -51,7 +51,7 @@ export default async function KamarPage() {
                 </TableCell>
               </TableRow>
             ) : (
-              rooms.map((room) => (
+              rooms.map((room: any) => (
                 <TableRow key={room.id}>
                   <TableCell className="font-medium">{room.number}</TableCell>
                   <TableCell>Lantai {room.floor}</TableCell>
@@ -89,7 +89,7 @@ export default async function KamarPage() {
             Belum ada data kamar.
           </Card>
         ) : (
-          rooms.map((room) => (
+          rooms.map((room: any) => (
             <Card key={room.id} className="p-4 space-y-3">
               <div className="flex items-center justify-between">
                 <span className="font-bold text-lg">Kamar {room.number}</span>
