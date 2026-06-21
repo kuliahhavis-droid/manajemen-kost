@@ -44,7 +44,7 @@ export default async function PengeluaranPage() {
                 </TableCell>
               </TableRow>
             ) : (
-              expenses.map((expense) => (
+              expenses.map((expense: any) => (
                 <TableRow key={expense.id}>
                   <TableCell className="font-medium">{expense.title}</TableCell>
                   <TableCell>
@@ -76,7 +76,7 @@ export default async function PengeluaranPage() {
             Belum ada data pengeluaran.
           </Card>
         ) : (
-          expenses.map((expense) => (
+          expenses.map((expense: any) => (
             <Card key={expense.id} className="p-4 space-y-3">
               <div className="flex items-start justify-between">
                 <div>

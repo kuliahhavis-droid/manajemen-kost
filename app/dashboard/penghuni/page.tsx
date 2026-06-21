@@ -62,7 +62,7 @@ export default async function PenghuniPage(props: any) {
                 </TableCell>
               </TableRow>
             ) : (
-              tenants.map((tenant) => (
+              tenants.map((tenant: any) => (
                 <TableRow key={tenant.id}>
                   <TableCell className="font-medium">{tenant.name}</TableCell>
                   <TableCell>
@@ -112,7 +112,7 @@ export default async function PenghuniPage(props: any) {
             Belum ada data penghuni.
           </Card>
         ) : (
-          tenants.map((tenant) => (
+          tenants.map((tenant: any) => (
             <Card key={tenant.id} className="p-4 space-y-3">
               <div className="flex items-center justify-between">
                 <span className="font-bold text-lg">{tenant.name}</span>

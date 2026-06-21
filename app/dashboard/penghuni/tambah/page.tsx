@@ -62,7 +62,7 @@ export default async function TambahPenghuniPage() {
                 {availableRooms.length === 0 ? (
                   <SelectItem value="none" disabled>Tidak ada kamar kosong</SelectItem>
                 ) : (
-                  availableRooms.map(room => (
+                  availableRooms.map((room: any) => (
                     <SelectItem key={room.id} value={room.id}>
                       {room.number} - {new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" }).format(room.price)}
                     </SelectItem>

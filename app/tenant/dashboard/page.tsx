@@ -159,7 +159,7 @@ export default async function TenantDashboardPage() {
               Belum ada riwayat pembayaran yang tercatat.
             </div>
           ) : (
-            tenant.payments.map((payment) => (
+            tenant.payments.map((payment: any) => (
               <div key={payment.id} className="p-4 sm:px-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-muted/10 transition-colors">
                 <div className="space-y-1">
                   <p className="font-semibold text-foreground">
@@ -186,7 +186,7 @@ export default async function TenantDashboardPage() {
                         Kuitansi Lunas <ExternalLink className="h-3 w-3" />
                       </a>
                     )}
-                    {payment.installments && payment.installments.map((inst, idx) => inst.receiptUrl && (
+                    {payment.installments && payment.installments.map((inst: any, idx: number) => inst.receiptUrl && (
                       <a key={inst.id} href={inst.receiptUrl} target="_blank" rel="noreferrer" className="text-orange-600 dark:text-orange-500 hover:underline flex items-center gap-1 text-xs">
                         Kuitansi Cicilan {idx+1} <ExternalLink className="h-3 w-3" />
                       </a>
